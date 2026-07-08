@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Insurance Price Prediction</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #121212;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #f0f0f0;
+        }
+        .container {
+            background: #1e1e1e;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 8px 25px rgba(0,0,0,0.6);
+            width: 420px;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #00d4ff;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        input, select, button {
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #333;
+            font-size: 14px;
+            background: #2a2a2a;
+            color: #f0f0f0;
+        }
+        input::placeholder {
+            color: #aaa;
+        }
+        select {
+            cursor: pointer;
+        }
+        button {
+            background: linear-gradient(90deg, #00d4ff, #0077ff);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #0077ff, #00d4ff);
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #00ff99;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Insurance Price Prediction</h2>
+        <form action="/predict" method="post">
+            <input type="number" step="any" name="age" placeholder="Age (scaled)" required>
+            <select name="ismale" required>
+                <option value="1">Male</option>
+                <option value="0">Female</option>
+            </select>
+            <input type="number" step="any" name="bmi" placeholder="BMI (scaled)" required>
+            <input type="number" step="any" name="children" placeholder="Children (scaled)" required>
+            <select name="issmoker" required>
+                <option value="1">Smoker</option>
+                <option value="0">Non-Smoker</option>
+            </select>
+            <select name="region_southeast" required>
+                <option value="1">Region: Southeast</option>
+                <option value="0">Other Regions</option>
+            </select>
+            <button type="submit">Predict Insurance Price</button>
+        </form>
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+    </div>
+</body>
+</html>
